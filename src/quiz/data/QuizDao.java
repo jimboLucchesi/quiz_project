@@ -1,5 +1,6 @@
 package quiz.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -42,7 +43,20 @@ public class QuizDao {
 		return q;
 	}
 	
-	public 
+	public Double getScore(List<String> userResponses, int counter){
+		
+		double correct = 0;
+		double score;
+		for (String string : userResponses) {
+		char isCorrect = (char) em.createQuery("SELECT a.isCorrect FROM Answer a WHERE a.text = :text").setParameter("text", string).getSingleResult();
+		if(isCorrect == 'Y'){
+			correct++;
+		}
+	
+		}
+		return score = (correct/(counter))*100;
+		
+	}
 
 
 	public Quiz getQuiz(int id)

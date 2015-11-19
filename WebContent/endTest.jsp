@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>End Test Page</title>
 </head>
-<body>
+<body bgcolor="yellow">
 <p>
-Your test score is: ${score}
+<b>Your test score is:</b> ${score}%
 </body>
 </html>

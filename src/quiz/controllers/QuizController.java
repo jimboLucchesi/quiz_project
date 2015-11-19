@@ -79,20 +79,24 @@ public class QuizController {
 
 		else {
 			System.out.println("Ending test");
-			counter = 0;
-			model.addAttribute("counter", counter = 0);
-			String score;
-			score = endTest(userResponses);
-			model.addAttribute("score", score);
-			return new ModelAndView("endTest.jsp");
+			Double score = quizDao.getScore(userResponses, counter);
+			counter=0;
+			model.addAttribute("counter", counter);
+			return new ModelAndView("endTest.jsp", "score", score);
 		}
 
 	}
 
-	public String endTest(List<String> userResponses) {
-		String message = "whatever.";
+	@RequestMapping("endTest.do")
+	public ModelAndView endTest(@ModelAttribute("userResponses") List<String> userResponses, 
+					Model model, @ModelAttribute("counter") int counter) {
+		/*String message = "whatever.";
 		System.out.println(userResponses);
-		return message;
+		return message;*/
+		Double score = quizDao.getScore(userResponses, counter);
+		counter=0;
+		model.addAttribute("counter", counter);
+		return new ModelAndView("endTest.jsp", "score", score);
 
 	}
 

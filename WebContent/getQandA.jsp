@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-${question}
+<body bgcolor="yellow">
+<h2>${question}</h2>
 <br/>
 <form action="getQandA.do" method="get">
 <c:forEach var ="a" items ="${answers}">
