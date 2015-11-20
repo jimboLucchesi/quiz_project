@@ -10,6 +10,7 @@
 </head>
 <body bgcolor="yellow">
 <p>
-<b>Your test score is:</b> ${score}%
+<h1><b>Your test score is:</b> ${score}%</h1>
+<a href="index.html">Take Test Again</a>
 </body>
 </html>

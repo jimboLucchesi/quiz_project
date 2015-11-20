@@ -46,14 +46,15 @@ public class QuizDao {
 	public Double getScore(List<String> userResponses, int counter){
 		
 		double correct = 0;
-		double score;
+		double score = 0;
 		for (String string : userResponses) {
-		char isCorrect = (char) em.createQuery("SELECT a.isCorrect FROM Answer a WHERE a.text = :text").setParameter("text", string).getSingleResult();
-		if(isCorrect == 'Y'){
-			correct++;
-		}
+			char isCorrect = (char) em.createQuery("SELECT a.isCorrect FROM Answer a WHERE a.text = :text").setParameter("text", string).getSingleResult();
+			if(isCorrect == 'Y'){
+				correct++;
+			}
 	
 		}
+		System.out.println("DAO CORRECT: " + correct + " DAO COUNTER: " + counter);
 		return score = (correct/(counter))*100;
 		
 	}

@@ -3,6 +3,8 @@ package quiz.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,18 +36,14 @@ public class QuizController {
 		List<String> userResponses = new ArrayList<String>();
 		return userResponses;
 	}
-
-	@RequestMapping("getQuizQuestions.do")
-	public ModelAndView getQuizQuestions() {
-
-		return new ModelAndView("getListOfQuestions.jsp", "theQuestion", quizDao.getListOfQuestions());
-	}
+	
+	//get list of questions and answers
 
 	@RequestMapping("getQandA.do")
 	public ModelAndView getQandA(Model model, @ModelAttribute("counter") int counter, @ModelAttribute("userResponses") List<String> userResponses,
 			@RequestParam(name = "answer", required = false) String answ) {
 		// length or size to .set() limit on counter to avoid exception
-		System.out.println("the stored value is: " + answ);
+//		System.out.println("the stored value is: " + answ);
 
 		if (answ != null) {
 			userResponses.add(answ);
@@ -55,9 +53,9 @@ public class QuizController {
 		else {}
 
 		List<Question> listOfQuestions = quizDao.getListOfQuestionObjects().getQuestions();
-		for (Question question : listOfQuestions) {
-			System.out.println(question);
-		}
+//		for (Question question : listOfQuestions) {
+//			System.out.println(question);
+//		}
 		if (counter < listOfQuestions.size()) {
 
 			Question question = listOfQuestions.get(counter);
@@ -67,7 +65,7 @@ public class QuizController {
 			for (Answer answer : listOfAnswers) {
 
 				listOfAnswersText.add(answer.getText());
-				System.out.println(answer.getText());
+//				System.out.println(answer.getText());
 			}
 
 			model.addAttribute("question", questionText);
@@ -81,6 +79,16 @@ public class QuizController {
 			System.out.println("Ending test");
 			Double score = quizDao.getScore(userResponses, counter);
 			counter=0;
+			userResponses.clear();
+			/*for (int i = 0; i < userResponses.size(); i++) {
+				userResponses.remove(i);
+			}*/
+			System.out.println(counter);
+			for (String string : userResponses) {
+				System.out.println(string);
+			}
+			
+//			model.addAttribute("userResponses", userResponses);
 			model.addAttribute("counter", counter);
 			return new ModelAndView("endTest.jsp", "score", score);
 		}
@@ -88,17 +96,36 @@ public class QuizController {
 	}
 
 	@RequestMapping("endTest.do")
-	public ModelAndView endTest(@ModelAttribute("userResponses") List<String> userResponses, 
-					Model model, @ModelAttribute("counter") int counter) {
-		/*String message = "whatever.";
-		System.out.println(userResponses);
-		return message;*/
+	public ModelAndView endTest(@ModelAttribute("userResponses") List<String> userResponses,
+			@RequestParam(name = "answer", required = false) String answ, Model model, @ModelAttribute("counter") int counter) {
+		
+//		if (answ != null) {
+//			userResponses.add(answ);
+//
+//		}
 		Double score = quizDao.getScore(userResponses, counter);
 		counter=0;
+//		for (String string : userResponses) {
+//			System.out.println(string);
+//		}
+//		for (int i=0; i<userResponses.size(); i++) {
+//			userResponses.remove(i);
+//		}
+//		System.out.println(counter);
+//		for (String string : userResponses) {
+//			System.out.println(string);
+//		}
+//		model.addAttribute("userResponses", userResponses);
 		model.addAttribute("counter", counter);
 		return new ModelAndView("endTest.jsp", "score", score);
 
 	}
+	
+	/*@RequestMapping("getQuizQuestions.do")
+	public ModelAndView getQuizQuestions() {
+
+		return new ModelAndView("getListOfQuestions.jsp", "theQuestion", quizDao.getListOfQuestions());
+	}*/
 
 	/*
 	 * @RequestMapping("getQuizName.do") public ModelAndView getQuizName() {
