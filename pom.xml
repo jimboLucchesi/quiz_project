@@ -33,12 +33,12 @@
 			<artifactId>org.eclipse.persistence.jpa</artifactId>
 			<version>2.6.0</version>
 		</dependency>
-		<!-- Dependency for Derby Client -->
+		<!-- Dependency for mysql client -->
 		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyclient</artifactId>
-			<version>10.11.1.1</version>
-		</dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.37</version>
+        </dependency>
 		<!-- Dependency for Spring MVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -56,12 +56,7 @@
 			<artifactId>jstl-impl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<!-- Dependency for DBCP -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
+		
 		<!-- Dependency for Spring JPA -->
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -121,6 +121,11 @@ public class QuizController {
 
 	}
 	
+	@RequestMapping("addNewQuestion.do")
+	public void addNewQuestion(){
+		
+	}
+	
 	/*@RequestMapping("getQuizQuestions.do")
 	public ModelAndView getQuizQuestions() {
 
